@@ -1,25 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Лента записей</h1>
+<h2>Лента записей</h2>
 
 {% for post in posts %}
-<div class="post">
-    <ul>
-        <li><strong>Место:</strong> {{ post.location }}</li>
-        <li><strong>Дата:</strong> {{ post.date }}</li>
-        <li><strong>Категория:</strong>
-            <a href="{% url 'blog:category_posts' post.category %}">
-                {{ post.category }}
-            </a>
-        </li>
-    </ul>
-
-    <p>{{ post.text|truncatewords:20 }}</p>
-
+    <p><b>Место:</b> {{ post.location }}</p>
+    <p><b>Дата:</b> {{ post.date }}</p>
+    <p><b>Категория:</b>
+        <a href="{% url 'blog:category_posts' post.category %}">
+            {{ post.category }}
+        </a>
+    </p>
+    <p>{{ post.text|truncatewords:10 }}</p>
     <a href="{% url 'blog:post_detail' post.id %}">Читать полный текст</a>
-</div>
-<hr>
+    <hr>
 {% endfor %}
 
 {% endblock %}
